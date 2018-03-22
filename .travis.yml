@@ -1,6 +1,6 @@
 language: java
 deploy:
-  provider: packagecloud
-  repository: "maven"
-  username: "RoccoDev"
-  token: $PKGCLOUD_KEY
+  provider: bintray
+    file: ".bintraydesc.json"
+    user: "roccodev"
+    key: $BINTRAY_KEY
