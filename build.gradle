@@ -1,16 +1,20 @@
 
 apply plugin: "kotlin"
 apply plugin: "java"
+
+
 buildscript {
     ext.kotlin_version = '1.2.0'
 
     repositories {
         mavenCentral()
+        jcenter()
 
     }
 
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
 
     }
 }
@@ -31,3 +35,5 @@ jar{
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
 
 }
+
+
