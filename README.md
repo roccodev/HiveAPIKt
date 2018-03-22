@@ -1,1 +1,2 @@
- 
+[![Build Status](https://travis-ci.org/RoccoDev/HiveAPIKt.svg?branch=master)](https://travis-ci.org/RoccoDev/HiveAPIKt)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/681b24a27f8349eb8a41c5e92b4cd3d2)](https://www.codacy.com/app/RoccoDev/HiveAPIKt?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=RoccoDev/HiveAPIKt&amp;utm_campaign=Badge_Grade)
