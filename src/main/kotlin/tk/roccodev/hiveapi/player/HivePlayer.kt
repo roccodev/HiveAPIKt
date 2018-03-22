@@ -1,9 +1,9 @@
 package tk.roccodev.hiveapi.player
 
-class HivePlayer {
+class HivePlayer(val uuid: String, val username: String) {
 
 
-    var uuid = ""
+
     var stats:List<PlayerStats> = listOf()
-    var username = ""
+
 }
