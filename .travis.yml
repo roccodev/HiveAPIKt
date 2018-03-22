@@ -1,6 +1,1 @@
 language: java
-deploy:
-  provider: bintray
-    file: "bintraydesc.json"
-    user: "roccodev"
-    key: $BINTRAY_KEY
