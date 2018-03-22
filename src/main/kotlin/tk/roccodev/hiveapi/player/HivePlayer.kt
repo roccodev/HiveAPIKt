@@ -54,6 +54,9 @@ class HivePlayer(val usernameOrUUID: String) {
                 return list
             }
 
+    val unlockedAchievements : List<Achievement>
+                    get() = achievements.filter { achievement -> achievement.unlockedAt != -1 }
+
 
 
 }

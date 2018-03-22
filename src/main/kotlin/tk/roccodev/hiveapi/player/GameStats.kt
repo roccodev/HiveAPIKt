@@ -45,6 +45,9 @@ open class GameStats(shortCode: String, val player: String) {
         }
 
 
+    val unlockedAchievements : List<Achievement>
+        get() = achievements.filter { achievement -> achievement.unlockedAt != -1 }
+
 
 }
 
