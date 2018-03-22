@@ -5,8 +5,7 @@ import tk.roccodev.hiveapi.player.stats.BED
 fun main(args: Array<String>) {
 
 
-  println(BED("RoccoDev").gamesPlayed)
-
+  println(BED("RoccoDev").kills)
 
 
 }

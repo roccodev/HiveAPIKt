@@ -4,7 +4,7 @@ import com.beust.klaxon.JsonObject
 import tk.roccodev.hiveapi.http.Download
 
 
-open class GameStats(shortCode: String, player: String) {
+open class GameStats(shortCode: String, val player: String) {
 
     var jsonObj: JsonObject
 
@@ -20,6 +20,8 @@ open class GameStats(shortCode: String, player: String) {
             get() = jsonObj.get("victories") as Int
     val lastLogin : Int
             get() = jsonObj.get("lastlogin") as Int
+
+
 
 
 
