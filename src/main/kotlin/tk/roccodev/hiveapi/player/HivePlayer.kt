@@ -1,9 +1,8 @@
 package tk.roccodev.hiveapi.player
 
-class HivePlayer(val uuid: String, val username: String) {
+
+
+class HivePlayer(val username: String, val UUID: String, val tokens: Long, val medals: Long)
 
 
 
-    var stats:List<PlayerStats> = listOf()
-
-}

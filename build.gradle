@@ -5,6 +5,7 @@ buildscript {
 
     repositories {
         mavenCentral()
+
     }
 
     dependencies {
@@ -13,9 +14,11 @@ buildscript {
 }
 repositories {
     mavenCentral()
+    jcenter()
 }
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib"
+    compile 'com.beust:klaxon:2.1.13'
 }
 sourceSets {
     main.kotlin.srcDirs += 'src/main/kotlin'
