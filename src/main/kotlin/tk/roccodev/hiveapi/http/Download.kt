@@ -13,9 +13,10 @@ import java.net.URL
 
 class Download{
 
-    fun hivePlayer(name: String) : HivePlayer? {
+    fun hivePlayer(name: String) : JsonObject? {
 
-       return Klaxon().parse(content(URLs.MAIN_URL + URLs.EP_PLAYER + name))
+        return contentWithJson(URLs.MAIN_URL + URLs.EP_PLAYER + name)
+
 
     }
 
