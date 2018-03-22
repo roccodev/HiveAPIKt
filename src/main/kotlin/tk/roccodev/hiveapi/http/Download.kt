@@ -65,16 +65,7 @@ class Download{
     }
 
 
-    fun content(url: String) : String{
-        var conn = URL(url).openConnection() as HttpURLConnection
-        conn.setRequestProperty("User-Agent", "RoccoDev/HiveAPIKt on " + System.getProperty("http.agent"))
-        try {
-            conn.connect()
-            return conn.inputStream.bufferedReader(Charsets.UTF_8).readText()
-        } finally {
-            conn.disconnect()
-        }
-    }
+
 
 }
 

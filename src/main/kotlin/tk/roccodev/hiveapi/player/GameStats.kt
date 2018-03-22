@@ -6,7 +6,7 @@ import tk.roccodev.hiveapi.http.Download
 
 open class GameStats(shortCode: String, val player: String) {
 
-    private var jsonObj: JsonObject
+    internal var jsonObj: JsonObject
 
     init {
         jsonObj = Download().pStatsObj(player, shortCode)!!
