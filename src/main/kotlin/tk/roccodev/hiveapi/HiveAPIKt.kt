@@ -9,6 +9,7 @@ fun main(args: Array<String>) {
     println(BED("RoccoDev").kills)
     println(Ranks().getRank("OWNER").human)
     println(HivePlayer("RoccoDev").rank.human)
+    println(BED("RoccoDev").achievements[0].progress)
 
 
 

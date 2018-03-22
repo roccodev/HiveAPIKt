@@ -1,6 +1,7 @@
 package tk.roccodev.hiveapi.player
 
 import com.beust.klaxon.JsonObject
+import tk.roccodev.hiveapi.game.Achievement
 import tk.roccodev.hiveapi.http.Download
 import tk.roccodev.hiveapi.player.status.OnlineStatus
 import tk.roccodev.hiveapi.rank.HiveRank
@@ -31,6 +32,26 @@ class HivePlayer(val usernameOrUUID: String) {
             get(){
                 var statusObj = jsonObj.obj("status")!!
                 return OnlineStatus(statusObj.string("description")!!, statusObj.string("game")!!)
+            }
+
+    val achievements : List<Achievement>
+            get(){
+                var achObj = jsonObj.obj("achievements")!!
+                var list = mutableListOf<Achievement>()
+                achObj.map.forEach { s, any -> run {
+                    if(any is JsonObject){
+                        var json = any as JsonObject
+                        var ach = Achievement(json.int("progress")!!, json.int("unlockedAt")!!)
+                        if(json.size > 2){
+                            ach.extra = mutableMapOf()
+                            ach.extra!!.putAll(json.map.filterNot { entry -> entry.key == "unlockedAt" || entry.key == "progress" })
+                        }
+                        ach.name = s
+                        list.add(ach)
+                    }
+                } }
+
+                return list
             }
 
 
