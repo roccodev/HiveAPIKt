@@ -4,7 +4,12 @@ import com.beust.klaxon.JsonObject
 import tk.roccodev.hiveapi.game.Achievement
 import tk.roccodev.hiveapi.http.Download
 
-
+/**
+ *
+ * API Interface that acts as a base class for all gamemodes.
+ *
+ *
+ */
 open class GameStats(shortCode: String, val player: String) {
 
     internal var jsonObj: JsonObject

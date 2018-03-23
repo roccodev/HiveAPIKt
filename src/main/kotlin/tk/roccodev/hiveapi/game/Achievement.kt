@@ -1,5 +1,12 @@
 package tk.roccodev.hiveapi.game
 
+
+/**
+ *
+ * API Object for an achievement
+ *
+ *
+ */
 class Achievement(val progress: Int, val unlockedAt: Int) {
 
 

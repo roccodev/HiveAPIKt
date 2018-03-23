@@ -11,6 +11,13 @@ import java.io.FileNotFoundException
 import java.net.HttpURLConnection
 import java.net.URL
 
+/**
+ *
+ * Utils class to fetch data from the server.
+ * Also contains a Klaxon implementation.
+ *
+ *
+ */
 class Download{
 
     fun hivePlayer(name: String) : JsonObject? {

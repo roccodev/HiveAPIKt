@@ -8,6 +8,13 @@ import tk.roccodev.hiveapi.player.status.OnlineStatus
 import tk.roccodev.hiveapi.rank.HiveRank
 import java.util.*
 
+
+/**
+ *
+ * API Interface for player global stats
+ *
+ *
+ */
 class HivePlayer(val usernameOrUUID: String) {
 
     internal var jsonObj : JsonObject
