@@ -5,7 +5,26 @@
 A simple yet efficient API wrapper for the HiveMC Minecraft Server 100% written in Kotlin.
 
 ### Add as a dependency
-Coming soon...
+Gradle:
+```java
+repositories {
+  jcenter()
+}
+
+dependencies {
+  compile 'tk.roccodev.hiveapi:HiveAPIKt:0.1'
+}
+
+```
+Maven:
+```xml
+<dependency>
+  <groupId>tk.roccodev.hiveapi</groupId> 
+  <artifactId>HiveAPIKt</artifactId> 
+  <version>0.1</version> 
+  <type>pom</type> 
+</dependency>
+```
 
 ### Examples
 Stats are fetched through `GameStats` objects, or the `HivePlayer` object if you want global stats.
