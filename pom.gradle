@@ -1,0 +1,34 @@
+
+def pomConfig = {
+    licenses {
+        license {
+            name "The MIT License"
+            url "http://www.apache.org/licenses/LICENSE-2.0.txt"
+            distribution "repo"
+        }
+    }
+    developers {
+        developer {
+            id "RoccoDev"
+            name "RoccoDev"
+            organization "--"
+            organizationUrl "http://www.roccodev.me"
+        }
+    }
+
+    scm {
+        url "https://github.com/RoccoDev/HiveAPIKt.git"
+    }
+}
+
+def withPom = { pom ->
+    pom.withXml {
+        def root = asNode()
+        root.appendNode('name', 'HiveAPIKt')
+        root.appendNode('description', 'A simple API wrapper for HiveMC')
+        root.appendNode('url', 'https://github.com/RoccoDev/HiveAPIKt')
+        root.children().last() + pomConfig
+    }
+}
+
+ext.withPom = withPom

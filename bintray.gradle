@@ -1,0 +1,19 @@
+bintray {
+    user = System.getenv('BINTRAY_USER')
+    key = System.getenv('BINTRAY_KEY')
+    publish = true
+
+    pkg {
+        userOrg = 'roccodev'
+        repo = 'maven'
+        name = 'HiveAPIKt'
+        licenses = ['MIT']
+        publications = ['mavenProject']
+
+        version {
+            name = project.version
+            released = new Date()
+            vcsTag = project.version
+        }
+    }
+}
