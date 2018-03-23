@@ -1,5 +1,6 @@
 package tk.roccodev.hiveapi.player
 
+import com.beust.klaxon.JsonArray
 import com.beust.klaxon.JsonObject
 import tk.roccodev.hiveapi.game.Achievement
 import tk.roccodev.hiveapi.http.Download
@@ -16,11 +17,28 @@ class HivePlayer(val usernameOrUUID: String) {
     }
 
     val username
-            get() = jsonObj.string("username")!!
+            get() = jsonObj.string("username")
     val uuid
-            get() = jsonObj.string("UUID")!!
+            get() = jsonObj.string("UUID")
 
 
+    val medals
+            get() = jsonObj.int("medals")
+
+    val tokens
+            get() = jsonObj.int("tokens")
+
+    val crates
+            get() = jsonObj.int("crates")
+
+    val firstLogin
+            get() = jsonObj.int("firstLogin")
+
+    val lastLogin
+            get() = jsonObj.int("lastLogin")
+
+    val lastLogout
+            get() = jsonObj.int("lastLogout")
 
     val rank : HiveRank
             get() {
@@ -57,6 +75,15 @@ class HivePlayer(val usernameOrUUID: String) {
     val unlockedAchievements : List<Achievement>
                     get() = achievements.filter { achievement -> achievement.unlockedAt != -1 }
 
+
+    val trophies : List<Trophy>
+                    get(){
+                        var tObj : JsonArray<JsonObject> = jsonObj.array("trophies")!!
+                        var list = mutableListOf<Trophy>()
+
+                        tObj.forEach { j -> list.add(Trophy(j.string("game")!!, j.string("achievement")!!)) }
+                        return list
+                    }
 
 
 }

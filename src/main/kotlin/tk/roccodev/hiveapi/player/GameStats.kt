@@ -13,16 +13,16 @@ open class GameStats(shortCode: String, val player: String) {
         jsonObj = Download().pStatsObj(player, shortCode)!!
     }
 
-    val points : Int
-            get() = jsonObj.get("total_points") as Int
-    val gamesPlayed : Int
-            get() = jsonObj.get("games_played") as Int
-    val victories : Int
-            get() = jsonObj.get("victories") as Int
-    val lastLogin : Int
-            get() = jsonObj.get("lastlogin") as Int
-    val firstLogin : Int
-            get() = jsonObj.get("firstLogin") as Int
+    val points
+            get() = jsonObj.int("total_points")
+    val gamesPlayed
+            get() = jsonObj.int("games_played")
+    val victories
+            get() = jsonObj.int("victories")
+    val lastLogin
+            get() = jsonObj.int("lastlogin")
+    val firstLogin
+            get() = jsonObj.int("firstLogin")
 
     val achievements : List<Achievement>
         get(){

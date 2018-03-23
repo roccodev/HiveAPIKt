@@ -8,7 +8,7 @@ fun main(args: Array<String>) {
 
     println(BED("RoccoDev").kills)
     println(Ranks().getRank("OWNER").human)
-    println(HivePlayer("RoccoDev").rank.human)
+    println(HivePlayer("RoccoDev").trophies[4].game)
     println(HivePlayer("RoccoDev").unlockedAchievements.size)
 
 

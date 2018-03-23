@@ -4,7 +4,10 @@ import tk.roccodev.hiveapi.player.PVPStats
 class BED(player: String) : PVPStats("BED", player) {
 
 
-    val bedsDestroyed : Int
-                get() = jsonObj.get("beds_destroyed") as Int
+    val bedsDestroyed
+                get() = jsonObj.int("beds_destroyed")
+
+    val teamsEliminated
+                get() = jsonObj.int("teams_eliminated")
 
 }
