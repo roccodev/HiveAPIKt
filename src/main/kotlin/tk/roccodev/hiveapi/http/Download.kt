@@ -18,7 +18,7 @@ import java.net.URL
  *
  *
  */
-class Download{
+internal class Download{
 
     fun hivePlayer(name: String) : JsonObject? {
 

@@ -4,7 +4,7 @@ package tk.roccodev.hiveapi.http
 /**
  *
  * URLs data-class
- * 
+ *
  *
  */
 object URLs {
