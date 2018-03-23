@@ -20,6 +20,13 @@ import java.net.URL
  */
 internal class Download{
 
+    /**
+     * Fetches player global data
+     *
+     * @param name The player's name or UUID
+     * @return The fetched data
+     *
+     */
     fun hivePlayer(name: String) : JsonObject? {
 
         return contentWithJson(URLs.MAIN_URL + URLs.EP_PLAYER + name)
@@ -28,7 +35,13 @@ internal class Download{
     }
 
 
-
+    /**
+     * Fetches player game stats data
+     *
+     * @param name The player's name or UUID
+     * @param game The game's shortcode (Refer to http://api.hivemc.com/v1/game/ for a list of shortcodes)
+     *
+     */
     fun pStatsObj(name: String, game: String) : JsonObject? {
 
         var obj : JsonObject = contentWithJson(URLs.MAIN_URL + URLs.EP_PLAYER + name + "/" + game)
@@ -36,7 +49,11 @@ internal class Download{
     }
 
 
-
+    /**
+     * Fetches the ranks list from the server
+     *
+     * @return The fetched list of ranks
+     */
     fun downloadRanks() : MutableList<HiveRank> {
 
         var json : JsonObject = contentWithJson(URLs.MAIN_URL + URLs.EP_SERVER + "ranks")
@@ -54,7 +71,12 @@ internal class Download{
     }
 
 
-
+    /**
+     * Fetches data from the server accepting a MIME type of 'application/json'
+     *
+     * @param url The URL to fetch data from
+     * @return The fetched data as a {@link com.beust.klaxon.JsonObject}
+     */
     fun contentWithJson(url: String) : JsonObject {
         var conn = URL(url).openConnection() as HttpURLConnection
         conn.setRequestProperty("User-Agent", "RoccoDev/HiveAPIKt on " + System.getProperty("http.agent"))
