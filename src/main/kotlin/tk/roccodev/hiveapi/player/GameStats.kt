@@ -35,8 +35,8 @@ open class GameStats(shortCode: String, val player: String) {
             var list = mutableListOf<Achievement>()
             achObj.map.forEach { s, any -> run {
                 if(any is JsonObject){
-                    var json = any as JsonObject
-                    var ach = Achievement(json.int("progress")!!, json.int("unlockedAt")!!)
+                    var json = any as? JsonObject
+                    var ach = Achievement(json?.int("progress")!!, json.int("unlockedAt")!!)
                     if(json.size > 2){
                         ach.extra = mutableMapOf()
                         ach.extra!!.putAll(json.map.filterNot { entry -> entry.key == "unlockedAt" || entry.key == "progress" })
