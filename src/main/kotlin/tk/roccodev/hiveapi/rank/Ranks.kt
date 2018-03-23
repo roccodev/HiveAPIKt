@@ -18,10 +18,26 @@ class Ranks {
         ranks.addAll(Download().downloadRanks())
     }
 
+    /**
+     * Gets a rank from the previously cached ranks based on
+     * the given criteria (its level in this case).
+     *
+     * @return such rank.
+     */
     fun getRank(id: Int) : HiveRank {
         return ranks.stream().filter { r -> r.id == id }.findAny().get()
     }
 
+    /**
+     * Gets a rank from the previously cached ranks based on
+     * the given criteria (its name in this case).
+     *
+     * Note: The name must follow the API's enum's naming conventions,
+     * therefore it must follow the same casing as the original one.
+     * Currently, all enum values are uppercase.
+     *
+     * @return such rank.
+     */
     fun getRank(enum: String) : HiveRank {
         return ranks.stream().filter { r -> r.enum == enum }.findAny().get()
     }
