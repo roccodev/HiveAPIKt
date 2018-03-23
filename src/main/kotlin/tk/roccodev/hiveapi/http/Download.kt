@@ -4,10 +4,10 @@ import com.beust.klaxon.JsonArray
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.Klaxon
 import tk.roccodev.hiveapi.exception.ProfileNotFoundException
-import tk.roccodev.hiveapi.player.HivePlayer
 import tk.roccodev.hiveapi.rank.HiveRank
+import tk.roccodev.hiveapi.server.AchievementInfo
+import tk.roccodev.hiveapi.server.ServerData
 import java.io.FileNotFoundException
-
 import java.net.HttpURLConnection
 import java.net.URL
 
@@ -44,8 +44,33 @@ internal class Download{
      */
     fun pStatsObj(name: String, game: String) : JsonObject? {
 
-        var obj : JsonObject = contentWithJson(URLs.MAIN_URL + URLs.EP_PLAYER + name + "/" + game)
-        return obj;
+        return contentWithJson(URLs.MAIN_URL + URLs.EP_PLAYER + name + "/" + game)
+
+    }
+
+
+    fun serverData() : ServerData? {
+
+
+        // For some reason, sometimes the playercount and uniquecount values appear as an Int, instead of a String
+
+        val pCount = contentWithJson(URLs.MAIN_URL + URLs.EP_SERVER + "playercount").get("count")
+        val pToUse = pCount as? Int ?: (pCount as String).toInt()
+
+        val uCount = contentWithJson(URLs.MAIN_URL + URLs.EP_SERVER + "uniquecount").get("count")
+        val uToUse = uCount as? Int ?: (uCount as String).toInt()
+
+        val achArray = contentWithJsonArray(URLs.MAIN_URL + URLs.EP_SERVER + "achievements").filterIsInstance<JsonObject>()
+
+        val list = mutableListOf<AchievementInfo>()
+
+        achArray.forEach { a -> run {
+            list.add(AchievementInfo(a))
+        } }
+
+
+       return pCount.let { uCount.let { _ -> ServerData((pToUse), uToUse, list) } }
+
     }
 
 
@@ -83,6 +108,29 @@ internal class Download{
         try {
             conn.connect()
             return Klaxon().parseJsonObject(conn.inputStream.bufferedReader(Charsets.UTF_8))
+        }
+        catch (ex: FileNotFoundException){
+            throw ProfileNotFoundException("Profile for URL $url could not be found.")
+        }
+        finally {
+            conn.disconnect()
+        }
+
+    }
+
+    /**
+     * Fetches data from the server accepting a MIME type of 'application/json'
+     * Specifically used for data which are just an array
+     *
+     * @param url The URL to fetch data from
+     * @return The fetched data as a {@link com.beust.klaxon.JsonArray}
+     */
+    fun contentWithJsonArray(url: String) : JsonArray<*> {
+        var conn = URL(url).openConnection() as HttpURLConnection
+        conn.setRequestProperty("User-Agent", "RoccoDev/HiveAPIKt on " + System.getProperty("http.agent"))
+        try {
+            conn.connect()
+            return Klaxon().parseJsonArray(conn.inputStream.bufferedReader(Charsets.UTF_8))
         }
         catch (ex: FileNotFoundException){
             throw ProfileNotFoundException("Profile for URL $url could not be found.")
