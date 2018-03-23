@@ -19,6 +19,13 @@ dependencies {
 ```
 Maven:
 ```xml
+<repositories>
+    <repository>
+      <id>jcenter</id>
+      <url>https://jcenter.bintray.com/</url>
+    </repository>
+</repositories>
+
 <dependency>
   <groupId>tk.roccodev.hiveapi</groupId> 
   <artifactId>HiveAPIKt</artifactId> 
