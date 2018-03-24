@@ -1,6 +1,6 @@
 package tk.roccodev.hiveapi.server
 
-import tk.roccodev.hiveapi.http.Download
+import tk.roccodev.hiveapi.http.DownloadObj
 
 class Server(){
 
@@ -15,7 +15,7 @@ class Server(){
 
     init {
 
-        val data = Download().serverData()
+        val data = DownloadObj.serverData()
         playerCount = data?.playerCount!!
         uniqueCount = data.uniqueCount
         achievements = data.achievements

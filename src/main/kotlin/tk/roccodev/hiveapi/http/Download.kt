@@ -18,7 +18,10 @@ import java.net.URL
  *
  *
  */
-internal class Download{
+
+val DownloadObj = Download()
+
+class Download {
 
     /**
      * Fetches player global data
@@ -47,6 +50,14 @@ internal class Download{
         return contentWithJson(URLs.MAIN_URL + URLs.EP_PLAYER + name + "/" + game)
 
     }
+
+
+    fun gameData(shortCode: String) : JsonObject {
+
+        return contentWithJson(URLs.MAIN_URL + URLs.EP_GAME + shortCode)
+
+    }
+
 
 
     fun serverData() : ServerData? {

@@ -2,7 +2,7 @@ package tk.roccodev.hiveapi.player
 
 import com.beust.klaxon.JsonObject
 import tk.roccodev.hiveapi.game.Achievement
-import tk.roccodev.hiveapi.http.Download
+import tk.roccodev.hiveapi.http.DownloadObj
 
 /**
  *
@@ -15,7 +15,7 @@ open class GameStats(shortCode: String, val player: String) {
     internal var jsonObj: JsonObject
 
     init {
-        jsonObj = Download().pStatsObj(player, shortCode)!!
+        jsonObj = DownloadObj.pStatsObj(player, shortCode)!!
     }
 
     val points

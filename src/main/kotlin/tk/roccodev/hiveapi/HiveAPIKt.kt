@@ -1,5 +1,6 @@
 package tk.roccodev.hiveapi
 
+import tk.roccodev.hiveapi.game.Game
 import tk.roccodev.hiveapi.player.HivePlayer
 import tk.roccodev.hiveapi.player.stats.BED
 import tk.roccodev.hiveapi.rank.Ranks
@@ -12,6 +13,7 @@ fun main(args: Array<String>) {
     println(HivePlayer("RoccoDev").trophies[4].game)
     println(HivePlayer("RoccoDev").unlockedAchievements.size)
     println(Server().achievements[0].secret)
+    println(Game("BED").uniquePlayers)
 
 
 }

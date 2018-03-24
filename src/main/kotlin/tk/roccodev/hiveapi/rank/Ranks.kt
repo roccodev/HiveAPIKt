@@ -1,6 +1,6 @@
 package tk.roccodev.hiveapi.rank
 
-import tk.roccodev.hiveapi.http.Download
+import tk.roccodev.hiveapi.http.DownloadObj
 
 /**
  *
@@ -15,7 +15,7 @@ class Ranks {
     val ranks : MutableList<HiveRank> = mutableListOf()
 
     init {
-        ranks.addAll(Download().downloadRanks())
+        ranks.addAll(DownloadObj.downloadRanks())
     }
 
     /**

@@ -3,10 +3,9 @@ package tk.roccodev.hiveapi.player
 import com.beust.klaxon.JsonArray
 import com.beust.klaxon.JsonObject
 import tk.roccodev.hiveapi.game.Achievement
-import tk.roccodev.hiveapi.http.Download
+import tk.roccodev.hiveapi.http.DownloadObj
 import tk.roccodev.hiveapi.player.status.OnlineStatus
 import tk.roccodev.hiveapi.rank.HiveRank
-import java.util.*
 
 
 /**
@@ -20,7 +19,7 @@ class HivePlayer(val usernameOrUUID: String) {
     internal var jsonObj : JsonObject
 
     init {
-        jsonObj = Download().hivePlayer(usernameOrUUID)!!
+        jsonObj = DownloadObj.hivePlayer(usernameOrUUID)!!
     }
 
     val username
