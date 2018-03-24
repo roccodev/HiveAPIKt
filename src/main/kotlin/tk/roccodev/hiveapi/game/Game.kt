@@ -40,6 +40,9 @@ class Game(val shortCode: String){
 
         }
 
+    val maps
+        get() = GameMaps(shortCode)
+
 }
 
 

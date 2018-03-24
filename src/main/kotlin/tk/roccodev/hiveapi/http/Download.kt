@@ -4,6 +4,7 @@ import com.beust.klaxon.JsonArray
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.Klaxon
 import tk.roccodev.hiveapi.exception.ProfileNotFoundException
+import tk.roccodev.hiveapi.game.GameMap
 import tk.roccodev.hiveapi.rank.HiveRank
 import tk.roccodev.hiveapi.server.AchievementInfo
 import tk.roccodev.hiveapi.server.ServerData
@@ -81,6 +82,23 @@ class Download {
 
 
        return pCount.let { uCount.let { _ -> ServerData((pToUse), uToUse, list) } }
+
+    }
+
+
+    fun allMapData(shortCode: String) : List<GameMap> {
+
+        val json = contentWithJson(URLs.MAIN_URL + URLs.EP_GAME + shortCode + "/maps")
+        val list = mutableListOf<GameMap>()
+        json.map.forEach { s, any -> run {
+
+            val j = any as? JsonObject
+            list.add(GameMap(j?.string("worldname")!!, j.string("mapname")!!, j.string("mapauthor")!!, j.int("added")!!, s))
+
+
+        } }
+
+        return list
 
     }
 
