@@ -22,6 +22,10 @@ open class GameStats(shortCode: String, val player: String) {
             get() = jsonObj.int("total_points")
     val gamesPlayed
             get() = jsonObj.int("games_played")
+
+    open val title
+            get() = jsonObj.string("title")
+
     val victories
             get() = jsonObj.int("victories")
     val lastLogin
