@@ -1,4 +1,5 @@
 package tk.roccodev.hiveapi.player.stats
+import com.beust.klaxon.JsonArray
 import tk.roccodev.hiveapi.player.PVPStats
 
 /**
@@ -20,5 +21,8 @@ class BED(player: String) : PVPStats("BED", player) {
 
     override val title
                 get() = ""
+
+    override val recentGames: Array<String>
+        get() = arrayOf()
 
 }

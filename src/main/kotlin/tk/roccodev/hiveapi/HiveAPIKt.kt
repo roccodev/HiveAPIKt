@@ -17,7 +17,7 @@ fun main(args: Array<String>) {
     println(Server().achievements[0].secret)
     println(Game("BED").uniquePlayers)
     println(Game("BED").maps.getMapByCommonName("Hell").worldName)
-    println(DR("RoccoDev").unlockedAchievements[2].name)
+    println(DR("RoccoDev").mapRecords["DR_Ice"])
 
 
 }

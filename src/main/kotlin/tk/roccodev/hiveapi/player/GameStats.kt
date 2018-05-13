@@ -3,6 +3,7 @@ package tk.roccodev.hiveapi.player
 import com.beust.klaxon.JsonObject
 import tk.roccodev.hiveapi.game.Achievement
 import tk.roccodev.hiveapi.http.DownloadObj
+import java.util.stream.Collectors
 
 /**
  *
@@ -33,14 +34,17 @@ open class GameStats(shortCode: String, val player: String) {
     val firstLogin
             get() = jsonObj.int("firstLogin")
 
+    open val recentGames: Array<String>?
+        get() = jsonObj.array<String>("recentgames").orEmpty().toTypedArray()
+
     val achievements : List<Achievement>
         get(){
-            var achObj = jsonObj.obj("achievements")!!
-            var list = mutableListOf<Achievement>()
+            val achObj = jsonObj.obj("achievements")!!
+            val list = mutableListOf<Achievement>()
             achObj.map.forEach { s, any -> run {
                 if(any is JsonObject){
-                    var json = any as? JsonObject
-                    var ach = Achievement(json?.int("progress")!!, json.int("unlockedAt")!!)
+                    val json = any as? JsonObject
+                    val ach = Achievement(json?.int("progress")!!, json.int("unlockedAt")!!)
                     if(json.size > 2){
                         ach.extra = mutableMapOf()
                         ach.extra!!.putAll(json.map.filterNot { entry -> entry.key == "unlockedAt" || entry.key == "progress" })
