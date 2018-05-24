@@ -33,7 +33,7 @@ open class GameStats(private val shortCode: String, val player: String) {
 
     val victories
             get() = jsonObj.int("victories")
-    val lastLogin
+    open val lastLogin
             get() = jsonObj.int("lastlogin")
     val firstLogin
             get() = jsonObj.int("firstLogin")

@@ -41,6 +41,9 @@ class BP(player: String) : PVPStats("BP", player) {
     val placings
         get() = jsonObj.int("total_placings")
 
+    override val lastLogin: Int?
+        get() = jsonObj.int("cached")
+
     override val recentGames: Array<String>
         get() = arrayOf()
 
