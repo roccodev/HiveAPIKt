@@ -12,6 +12,9 @@ import tk.roccodev.hiveapi.player.PVPStats
 class CAI(player: String) : GameStats("CAI", player) {
 
 
+    override val gamesPlayed: Int?
+        get() = jsonObj.int("gamesplayed")
+
     val captured
         get() = jsonObj.int("captured")
 
