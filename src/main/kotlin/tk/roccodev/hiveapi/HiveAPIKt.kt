@@ -2,6 +2,7 @@ package tk.roccodev.hiveapi
 
 import tk.roccodev.hiveapi.game.Game
 import tk.roccodev.hiveapi.game.Games
+import tk.roccodev.hiveapi.game.lb.Leaderboard
 import tk.roccodev.hiveapi.player.HivePlayer
 import tk.roccodev.hiveapi.player.stats.BED
 import tk.roccodev.hiveapi.player.stats.DR
@@ -21,7 +22,7 @@ fun main(args: Array<String>) {
     println(Game("BED").maps.getMapByCommonName("Hell").worldName)
     println(DR("RoccoDev").mapRecords["DR_Ice"])
     println(TIMV("RoccoDev").parentGameStats.uniquePlayers)
-    println(Games()["EF"])
+    println(Game("TIMV").leaderboard(0, 1).get(0)["username"])
 
 
 }

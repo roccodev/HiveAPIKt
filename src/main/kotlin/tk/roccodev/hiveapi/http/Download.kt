@@ -5,6 +5,7 @@ import com.beust.klaxon.JsonObject
 import com.beust.klaxon.Klaxon
 import tk.roccodev.hiveapi.exception.ProfileNotFoundException
 import tk.roccodev.hiveapi.game.GameMap
+import tk.roccodev.hiveapi.game.lb.LeaderboardProfile
 import tk.roccodev.hiveapi.rank.HiveRank
 import tk.roccodev.hiveapi.server.AchievementInfo
 import tk.roccodev.hiveapi.server.ServerData
@@ -63,6 +64,19 @@ class Download {
 
     }
 
+    fun leaderboard(shortCode: String, start: Int, end: Int) : MutableList<LeaderboardProfile> {
+
+        val json = contentWithJson(URLs.MAIN_URL + URLs.EP_GAME + "$shortCode/leaderboard/$start/$end")
+        val arr : JsonArray<JsonObject> = json.array<JsonObject>("leaderboard")!!
+        val toReturn = mutableListOf<LeaderboardProfile>()
+        arr.forEach {
+            val lb = LeaderboardProfile()
+            lb.putAll(it as Map<out String, Any>)
+            toReturn.add(lb)
+        }
+
+        return toReturn
+    }
 
 
     fun serverData() : ServerData? {

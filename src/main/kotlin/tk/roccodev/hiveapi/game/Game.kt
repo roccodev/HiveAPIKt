@@ -2,6 +2,7 @@ package tk.roccodev.hiveapi.game
 
 import com.beust.klaxon.JsonArray
 import com.beust.klaxon.JsonObject
+import tk.roccodev.hiveapi.game.lb.Leaderboard
 import tk.roccodev.hiveapi.http.DownloadObj
 import tk.roccodev.hiveapi.server.AchievementInfo
 
@@ -42,6 +43,8 @@ class Game(val shortCode: String){
 
     val maps
         get() = GameMaps(shortCode)
+
+   fun leaderboard(start: Int, end: Int) = Leaderboard(shortCode, start, end)
 
 }
 
