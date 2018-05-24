@@ -14,7 +14,7 @@ import java.util.stream.Collectors
  */
 open class GameStats(private val shortCode: String, val player: String) {
 
-    internal var jsonObj: JsonObject
+    protected var jsonObj: JsonObject
 
     init {
         jsonObj = DownloadObj.pStatsObj(player, shortCode)!!
