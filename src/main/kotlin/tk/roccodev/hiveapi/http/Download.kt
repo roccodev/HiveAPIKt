@@ -52,6 +52,10 @@ class Download {
 
     }
 
+    fun gamesList() : Map<String, String>{
+        return contentWithJson(URLs.MAIN_URL + URLs.EP_GAME) as Map<String, String>
+    }
+
 
     fun gameData(shortCode: String) : JsonObject {
 

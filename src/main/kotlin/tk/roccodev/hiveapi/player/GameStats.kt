@@ -2,6 +2,7 @@ package tk.roccodev.hiveapi.player
 
 import com.beust.klaxon.JsonObject
 import tk.roccodev.hiveapi.game.Achievement
+import tk.roccodev.hiveapi.game.Game
 import tk.roccodev.hiveapi.http.DownloadObj
 import java.util.stream.Collectors
 
@@ -11,13 +12,16 @@ import java.util.stream.Collectors
  *
  *
  */
-open class GameStats(shortCode: String, val player: String) {
+open class GameStats(private val shortCode: String, val player: String) {
 
     internal var jsonObj: JsonObject
 
     init {
         jsonObj = DownloadObj.pStatsObj(player, shortCode)!!
     }
+
+    val parentGameStats
+        get() = Game(shortCode)
 
     val points
             get() = jsonObj.int("total_points")
