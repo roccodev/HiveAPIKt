@@ -1,5 +1,6 @@
 package tk.roccodev.hiveapi.server
 
+import com.beust.klaxon.JsonArray
 import tk.roccodev.hiveapi.http.DownloadObj
 
 class Server(){
@@ -12,6 +13,22 @@ class Server(){
 
     var achievements = listOf<AchievementInfo>()
         private set
+
+
+    val staffMembers : Map<Int, Array<String>>
+        get() {
+
+            val json = DownloadObj.staffData()
+            val toReturn = mutableMapOf<Int, Array<String>>()
+            json?.entries?.forEach {
+                val arr = it.value as JsonArray<String>
+
+                toReturn.put(it.key.toInt(), arr.toTypedArray())
+
+            }
+            return toReturn
+
+        }
 
     init {
 

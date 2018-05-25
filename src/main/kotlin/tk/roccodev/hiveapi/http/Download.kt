@@ -40,6 +40,10 @@ class Download {
     }
 
 
+    fun staffData() : JsonObject? {
+        return contentWithJson(URLs.MAIN_URL + URLs.EP_STAFF)
+    }
+
     /**
      * Fetches player game stats data
      *

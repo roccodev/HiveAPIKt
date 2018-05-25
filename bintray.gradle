@@ -12,7 +12,7 @@ bintray {
         publications = ['mavenProject']
 
         version {
-            name = "0.1"
+            name = "1.0"
             released = new Date()
             vcsTag = "TestTag"
         }
