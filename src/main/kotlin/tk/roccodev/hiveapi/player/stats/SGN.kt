@@ -1,4 +1,5 @@
 package tk.roccodev.hiveapi.player.stats
+import tk.roccodev.hiveapi.game.Achievement
 import tk.roccodev.hiveapi.player.PVPStats
 
 /**
@@ -20,6 +21,8 @@ class SGN(player: String) : PVPStats("SGN", player) {
 
     val deathmatches
         get() = jsonObj.int("deathmatches")
+
+    override val achievements = listOf<Achievement>()
 
     override val title: String?
         get() = ""

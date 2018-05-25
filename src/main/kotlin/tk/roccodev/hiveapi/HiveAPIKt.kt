@@ -1,11 +1,9 @@
 package tk.roccodev.hiveapi
 
 import tk.roccodev.hiveapi.game.Game
+import tk.roccodev.hiveapi.game.lb.Leaderboard
 import tk.roccodev.hiveapi.player.HivePlayer
-import tk.roccodev.hiveapi.player.stats.BED
-import tk.roccodev.hiveapi.player.stats.DR
-import tk.roccodev.hiveapi.player.stats.LAB
-import tk.roccodev.hiveapi.player.stats.TIMV
+import tk.roccodev.hiveapi.player.stats.*
 import tk.roccodev.hiveapi.rank.Ranks
 import tk.roccodev.hiveapi.server.Server
 import tk.roccodev.hiveapi.util.dateFromHiveSeconds
@@ -23,6 +21,7 @@ fun main(args: Array<String>) {
     println(TIMV("RoccoDev").parentGameStats.uniquePlayers)
     println(Game("TIMV").leaderboard(0, 1).get(0)["username"])
     println(LAB("TNTDragonMC").gameVictories?.get("BALLOONPOP"))
+    println(SPL("TNTDragonMC").characterStats["RavenCharacter"]?.blocksPainted)
 
 
 

@@ -1,4 +1,5 @@
 package tk.roccodev.hiveapi.player.stats
+import tk.roccodev.hiveapi.game.Achievement
 import tk.roccodev.hiveapi.player.PVPStats
 
 /**
@@ -22,6 +23,8 @@ class PMK(player: String) : PVPStats("PMK", player) {
 
     override val lastLogin: Int?
         get() = jsonObj.int("cached")
+
+    override val achievements = listOf<Achievement>()
 
     override val recentGames: Array<String>
         get() = arrayOf()

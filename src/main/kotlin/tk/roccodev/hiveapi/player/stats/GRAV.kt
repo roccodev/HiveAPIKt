@@ -3,28 +3,25 @@ import tk.roccodev.hiveapi.game.Achievement
 import tk.roccodev.hiveapi.player.GameStats
 
 /**
- * Main DrawIt data fetcher
+ * Main Gravity data fetcher
  *
  *
  *
  */
-class DRAW(player: String) : GameStats("DRAW", player) {
+class GRAV(player: String) : GameStats("GRAV", player) {
 
-
-    val correctGuesses
-        get() = jsonObj.int("correct_guesses")
-
-    val incorrectGuesses
-        get() = jsonObj.int("incorrect_guesses")
-
-    val skips
-        get() = jsonObj.int("skips")
 
     override val gamesPlayed: Int?
         get() = jsonObj.int("gamesplayed")
 
-    override val lastLogin: Int?
-        get() = jsonObj.int("cached")
+    override val points: Int?
+        get() = jsonObj.int("points")
+
+    override val firstLogin: Int?
+        get() = jsonObj.int("firstlogin")
+
+    val mapRecords
+        get() = jsonObj.obj("maprecords") as? Map<String, Int>
 
     override val achievements = listOf<Achievement>()
 

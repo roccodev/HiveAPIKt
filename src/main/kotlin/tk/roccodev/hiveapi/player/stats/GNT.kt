@@ -3,21 +3,24 @@ import tk.roccodev.hiveapi.game.Achievement
 import tk.roccodev.hiveapi.player.PVPStats
 
 /**
- * Main BatteryDash data fetcher
+ * Main SkyGiants (Teams of 6) data fetcher
  *
  * Inherits data from PVPStats (kills, deaths)
  *
  *
  */
-class BD(player: String) : PVPStats("BD", player) {
+class GNT(player: String) : PVPStats("GNT", player) {
 
 
 
-    val energyCollected
-        get() = jsonObj.int("energy_collected")
+    val goldEarned
+        get() = jsonObj.int("gold_earned")
 
-    val batteriesCharged
-        get() = jsonObj.int("batteries_charged")
+    val beastsSlain
+        get() = jsonObj.int("beasts_slain")
+
+    val shutdowns
+        get() = jsonObj.int("shutdowns")
 
     override val achievements = listOf<Achievement>()
 

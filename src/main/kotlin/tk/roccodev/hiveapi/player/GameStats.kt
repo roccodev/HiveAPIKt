@@ -31,7 +31,7 @@ open class GameStats(private val shortCode: String, val player: String) {
     open val title
             get() = jsonObj.string("title")
 
-    val victories
+    open val victories
             get() = jsonObj.int("victories")
     open val lastLogin
             get() = jsonObj.int("lastlogin")
@@ -41,7 +41,7 @@ open class GameStats(private val shortCode: String, val player: String) {
     open val recentGames: Array<String>?
         get() = jsonObj.array<String>("recentgames").orEmpty().toTypedArray()
 
-    val achievements : List<Achievement>
+    open val achievements : List<Achievement>
         get(){
             val achObj = jsonObj.obj("achievements")!!
             val list = mutableListOf<Achievement>()
