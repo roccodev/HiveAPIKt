@@ -29,7 +29,7 @@ Maven:
 <dependency>
   <groupId>tk.roccodev.hiveapi</groupId> 
   <artifactId>HiveAPIKt</artifactId> 
-  <version>0.1</version> 
+  <version>1.0</version>
   <type>pom</type> 
 </dependency>
 ```
