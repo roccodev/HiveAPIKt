@@ -35,6 +35,8 @@ Maven:
 ```
 
 ### Examples
+For more information, check the [wiki](https://github.com/RoccoDev/HiveAPIKt/wiki).
+
 Stats are fetched through `GameStats` objects, or the `HivePlayer` object if you want global stats.
 You can find a player either by name or by UUID.
 
