@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-  compile 'tk.roccodev.hiveapi:HiveAPIKt:0.1'
+  compile 'tk.roccodev.hiveapi:HiveAPIKt:1.0'
 }
 
 ```
