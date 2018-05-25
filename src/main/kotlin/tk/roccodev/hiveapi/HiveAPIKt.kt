@@ -4,6 +4,7 @@ import tk.roccodev.hiveapi.game.Game
 import tk.roccodev.hiveapi.player.HivePlayer
 import tk.roccodev.hiveapi.player.stats.BED
 import tk.roccodev.hiveapi.player.stats.DR
+import tk.roccodev.hiveapi.player.stats.LAB
 import tk.roccodev.hiveapi.player.stats.TIMV
 import tk.roccodev.hiveapi.rank.Ranks
 import tk.roccodev.hiveapi.server.Server
@@ -21,6 +22,7 @@ fun main(args: Array<String>) {
     println(DR("RoccoDev").mapRecords["DR_Ice"])
     println(TIMV("RoccoDev").parentGameStats.uniquePlayers)
     println(Game("TIMV").leaderboard(0, 1).get(0)["username"])
+    println(LAB("TNTDragonMC").gameVictories?.get("BALLOONPOP"))
 
 
 

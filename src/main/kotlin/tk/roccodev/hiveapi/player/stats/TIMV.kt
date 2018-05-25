@@ -1,8 +1,5 @@
 package tk.roccodev.hiveapi.player.stats
-import com.beust.klaxon.JsonArray
-import tk.roccodev.hiveapi.game.Game
 import tk.roccodev.hiveapi.player.GameStats
-import tk.roccodev.hiveapi.player.PVPStats
 
 /**
  * Main BedWars data fetcher

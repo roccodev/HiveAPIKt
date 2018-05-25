@@ -23,7 +23,7 @@ open class GameStats(private val shortCode: String, val player: String) {
     val parentGameStats
         get() = Game(shortCode)
 
-    val points
+    open val points
             get() = jsonObj.int("total_points")
    open val gamesPlayed
             get() = jsonObj.int("games_played")
@@ -35,7 +35,7 @@ open class GameStats(private val shortCode: String, val player: String) {
             get() = jsonObj.int("victories")
     open val lastLogin
             get() = jsonObj.int("lastlogin")
-    val firstLogin
+    open val firstLogin
             get() = jsonObj.int("firstLogin")
 
     open val recentGames: Array<String>?

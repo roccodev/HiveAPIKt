@@ -1,5 +1,4 @@
 package tk.roccodev.hiveapi.player.stats
-import com.beust.klaxon.JsonArray
 import tk.roccodev.hiveapi.player.PVPStats
 
 /**

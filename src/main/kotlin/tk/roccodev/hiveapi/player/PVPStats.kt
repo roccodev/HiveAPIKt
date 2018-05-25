@@ -8,12 +8,12 @@ package tk.roccodev.hiveapi.player
  *
  *
  */
-open class PVPStats(shortcode: String, player: String) : GameStats(shortcode, player){
+open class PVPStats(shortCode: String, player: String) : GameStats(shortCode, player){
 
 
     val kills
             get() = jsonObj.int("kills")
-    val deaths
+   open val deaths
         get() = jsonObj.int("deaths")
 
 

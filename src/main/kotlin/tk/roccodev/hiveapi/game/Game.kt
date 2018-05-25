@@ -1,6 +1,5 @@
 package tk.roccodev.hiveapi.game
 
-import com.beust.klaxon.JsonArray
 import com.beust.klaxon.JsonObject
 import tk.roccodev.hiveapi.game.lb.Leaderboard
 import tk.roccodev.hiveapi.http.DownloadObj
