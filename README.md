@@ -5,7 +5,7 @@
 # HiveAPIKt - A HiveMC API wrapper written in Kotlin
 A simple yet efficient API wrapper for the HiveMC Minecraft Server 100% written in Kotlin.
 
-API Doc: [Here](https://roccodev.pw/apidoc/HiveAPIKt/)  
+Javadoc: [Here](https://roccodev.pw/apidoc/HiveAPIKt/)  
 Hive API Doc: [Here](https://apidoc.hivemc.com)
 
 ### Add as a dependency
