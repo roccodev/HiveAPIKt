@@ -25,9 +25,15 @@ class Game(val shortCode: String){
         jsonObj = DownloadObj.gameData(shortCode)
     }
 
+    /**
+     * The unique players of the gamemode.
+     */
     val uniquePlayers
         get() = jsonObj.int("uniqueplayers")
 
+    /**
+     * Array/List of achievements of the mode (Not including the map ones).
+     */
     val achievements : List<AchievementInfo>
         get() {
             val list = mutableListOf<AchievementInfo>()
@@ -40,9 +46,28 @@ class Game(val shortCode: String){
 
         }
 
+    /**
+     * List of title objects registered in the gamemode.
+     */
+    val titles
+        get() = DownloadObj.titles(shortCode)
+
+
+    /**
+     * List of maps registered in the gamemode.
+     */
     val maps
         get() = GameMaps(shortCode)
 
+    /**
+     * Same result as instantiating a Leaderboard object with the game's shortCode, start and end.
+     *
+     * @param start start index for the leaderboard (starting from 0 for 1st place).
+     * @param end end index for the leaderboard.
+     *
+     * @see Leaderboard
+     * @return the fetched Leaderboard object.
+     */
    fun leaderboard(start: Int, end: Int) = Leaderboard(shortCode, start, end)
 
 }

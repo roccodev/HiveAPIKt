@@ -5,6 +5,7 @@ import com.beust.klaxon.JsonObject
 import com.beust.klaxon.Klaxon
 import tk.roccodev.hiveapi.exception.ProfileNotFoundException
 import tk.roccodev.hiveapi.game.GameMap
+import tk.roccodev.hiveapi.game.GameTitle
 import tk.roccodev.hiveapi.game.lb.LeaderboardProfile
 import tk.roccodev.hiveapi.rank.HiveRank
 import tk.roccodev.hiveapi.server.AchievementInfo
@@ -82,6 +83,19 @@ class Download {
         }
 
         return toReturn
+    }
+
+    fun titles(shortCode: String) : List<GameTitle> {
+
+        val json = contentWithJsonArray(URLs.MAIN_URL + URLs.EP_GAME + "$shortCode/titles")
+        val toReturn = mutableListOf<GameTitle>()
+        json.forEach {
+            val j = it as JsonObject
+            toReturn.add(GameTitle(j.string("name"), j.int("required_points"), j.string("human_name"), j.string("plain_name")))
+        }
+
+        return toReturn
+
     }
 
 

@@ -10,37 +10,80 @@ import java.util.stream.Collectors
  *
  * API Interface that acts as a base class for all gamemodes.
  *
+ * @property shortCode the gamemode's shortcode (e.g, 'BED');
+ * @property player the player whose info is fetched, can be either their name or their UUID.
+ *
+ * @see tk.roccodev.hiveapi.game.Games for a list of shortcodes; subclasses of this class are also named after them.
  *
  */
 open class GameStats(private val shortCode: String, val player: String) {
 
-    protected var jsonObj: JsonObject
+    protected var jsonObj: JsonObject = DownloadObj.pStatsObj(player, shortCode)!!
 
-    init {
-        jsonObj = DownloadObj.pStatsObj(player, shortCode)!!
-    }
-
+    /**
+     * Creates an instance of the Game object corresponding to the current gamemode.
+     *
+     * Note: It's not recommended to purely instantiate a GameStats class just to fetch the parent mode;
+     * @see Game 's constructor for a more efficient way to get a Game object.
+     */
     val parentGameStats
         get() = Game(shortCode)
 
+
+    /**
+     * The player's points.
+     */
     open val points
             get() = jsonObj.int("total_points")
-   open val gamesPlayed
+
+    /**
+     * The amount of games the player has played, or -1 if the mode doesn't support this.
+     */
+    open val gamesPlayed
             get() = jsonObj.int("games_played")
 
+    /**
+     * The rank shown in-game, based on points or other stats.
+     */
     open val title
             get() = jsonObj.string("title")
 
+    /**
+     * The amount of games the player has won, or -1 if the mode doesn't support this.
+     */
     open val victories
             get() = jsonObj.int("victories")
+
+    /**
+     * Amount of seconds since epoch until the player has last logged onto the gamemode.
+     *
+     * @see tk.roccodev.hiveapi.util.dateFromHiveSeconds to convert such seconds into a Date.
+     */
     open val lastLogin
             get() = jsonObj.int("lastlogin")
+
+    /**
+     * Amount of seconds since epoch until the player had first logged onto the gamemode.
+     *
+     * @see tk.roccodev.hiveapi.util.dateFromHiveSeconds to convert such seconds into a Date.
+     */
     open val firstLogin
             get() = jsonObj.int("firstLogin")
 
+    /**
+     * Fetches the recent games of the given player.
+     *
+     * Note: Not every gamemode supports this feature.
+     */
     open val recentGames: Array<String>?
         get() = jsonObj.array<String>("recentgames").orEmpty().toTypedArray()
 
+    /**
+     * Fetches the achievements of the given player, for the given mode;
+     *
+     * Note: Not every gamemode supports this feature; the majority does.
+     *
+     */
     open val achievements : List<Achievement>
         get(){
             val achObj = jsonObj.obj("achievements")!!
@@ -61,7 +104,10 @@ open class GameStats(private val shortCode: String, val player: String) {
             return list
         }
 
-
+    /**
+     * Fetches the achievements of the given player, and returns the ones the player has unlocked.
+     *
+     */
     val unlockedAchievements : List<Achievement>
         get() = achievements.filter { achievement -> achievement.unlockedAt != -1 }
 
