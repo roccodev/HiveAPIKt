@@ -32,12 +32,6 @@ class DR(player: String) : PVPStats("DR", player) {
         val selectedVisibility
             get() = jsonObj.string("visibility")
 
-        val trapKills
-            get() = jsonObj.obj("trapkills").orEmpty()
-
-        val trapDeaths
-            get() = jsonObj.obj("trapdeaths").orEmpty()
-
         val multiKills
             get() = jsonObj.obj("multikills").orEmpty()
 

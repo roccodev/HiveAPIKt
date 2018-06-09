@@ -60,6 +60,10 @@ class Download {
 
     }
 
+    fun chatReport(id: String) : JsonObject {
+        return contentWithJson(URLs.MAIN_URL + "chatreport/$id")
+    }
+
     fun gamesList() : Map<String, String>{
         return contentWithJson(URLs.MAIN_URL + URLs.EP_GAME) as Map<String, String>
     }
