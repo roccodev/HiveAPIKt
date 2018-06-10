@@ -35,6 +35,21 @@ class DR(player: String) : PVPStats("DR", player) {
         val multiKills
             get() = jsonObj.obj("multikills").orEmpty()
 
+        val deathRecordsPerMap
+            get() = jsonObj.obj("mapDeaths").orEmpty()
+
+        val killRecordsPerMap
+            get() = jsonObj.obj("mapKills").orEmpty()
+
+        val killsPerTrapClass
+            get() = jsonObj.obj("trapclasskills").orEmpty()
+
+        val deathsPerTrapClass
+            get() = jsonObj.obj("trapclassdeaths").orEmpty()
+
+        val trapKills = emptyArray<Any>()
+        val trapDeaths = emptyArray<Any>()
+
         val mapRecords
             get() = jsonObj.obj("maprecords").orEmpty()
 
