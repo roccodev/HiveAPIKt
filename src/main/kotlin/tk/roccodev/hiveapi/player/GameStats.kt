@@ -31,6 +31,12 @@ open class GameStats(private val shortCode: String, val player: String) {
 
 
     /**
+     * The specified player's UUID, with the hyphens stripped away.
+     */
+    val uuid
+        get() = jsonObj.string("UUID")
+
+    /**
      * The player's points.
      */
     open val points
