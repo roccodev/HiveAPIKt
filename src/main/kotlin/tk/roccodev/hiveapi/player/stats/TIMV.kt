@@ -12,7 +12,7 @@ class TIMV(player: String) : GameStats("TIMV", player) {
 
 
     val karmaRecord
-        get() = jsonObj.int("mostPoints")
+        get() = jsonObj.int("most_points")
 
     val traitorPoints
         get() = jsonObj.int("t_points")
