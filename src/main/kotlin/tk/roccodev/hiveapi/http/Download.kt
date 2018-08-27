@@ -60,8 +60,16 @@ class Download {
 
     }
 
+    fun statusRaw(name: String) : JsonObject {
+        return contentWithJson(URLs.MAIN_URL + URLs.EP_PLAYER + "$name/status/raw")
+    }
+
     fun chatReport(id: String) : JsonObject {
-        return contentWithJson(URLs.MAIN_URL + "chatreport/$id")
+        return contentWithJson("${URLs.MAIN_URL}chatreport/$id")
+    }
+
+    fun blockPartyServer(name: String) : JsonObject {
+        return contentWithJson("${URLs.AJAX_URL}getblockpartyserver/$name")
     }
 
     fun gamesList() : Map<String, String>{
@@ -152,15 +160,15 @@ class Download {
      */
     fun downloadRanks() : MutableList<HiveRank> {
 
-        var json : JsonObject = contentWithJson(URLs.MAIN_URL + URLs.EP_SERVER + "ranks")
-        var list = mutableListOf<HiveRank>()
-        json.map.forEach({s: String, any: Any? ->
+        val json : JsonObject = contentWithJson(URLs.MAIN_URL + URLs.EP_SERVER + "ranks")
+        val list = mutableListOf<HiveRank>()
+        json.map.forEach { s: String, any: Any? ->
             run {
-                var obj: JsonObject = any as JsonObject
-                var rank = HiveRank(s.toInt(), obj.string("enum")!!, obj.string("human")!!)
+                val obj: JsonObject = any as JsonObject
+                val rank = HiveRank(s.toInt(), obj.string("enum")!!, obj.string("human")!!)
                 list.add(rank)
             }
-        })
+        }
 
         return list
 
@@ -173,8 +181,8 @@ class Download {
      * @param url The URL to fetch data from
      * @return The fetched data as a {@link com.beust.klaxon.JsonObject}
      */
-    fun contentWithJson(url: String) : JsonObject {
-        var conn = URL(url).openConnection() as HttpURLConnection
+    private fun contentWithJson(url: String) : JsonObject {
+        val conn = URL(url).openConnection() as HttpURLConnection
         conn.setRequestProperty("User-Agent", "RoccoDev/HiveAPIKt on " + System.getProperty("http.agent"))
         try {
             conn.connect()
@@ -196,8 +204,8 @@ class Download {
      * @param url The URL to fetch data from
      * @return The fetched data as a {@link com.beust.klaxon.JsonArray}
      */
-    fun contentWithJsonArray(url: String) : JsonArray<*> {
-        var conn = URL(url).openConnection() as HttpURLConnection
+    private fun contentWithJsonArray(url: String) : JsonArray<*> {
+        val conn = URL(url).openConnection() as HttpURLConnection
         conn.setRequestProperty("User-Agent", "RoccoDev/HiveAPIKt on " + System.getProperty("http.agent"))
         try {
             conn.connect()

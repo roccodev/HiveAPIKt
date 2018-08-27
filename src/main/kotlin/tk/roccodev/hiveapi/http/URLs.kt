@@ -14,6 +14,7 @@ object URLs {
     val EP_PLAYER = "player/"
     val EP_SERVER = "server/"
     val EP_STAFF = "staff/"
+    val AJAX_URL = "https://hivemc.com/ajax/"
 
 
 }

@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-  compile 'tk.roccodev.hiveapi:HiveAPIKt:1.1'
+  compile 'tk.roccodev.hiveapi:HiveAPIKt:1.2'
 }
 
 ```
@@ -32,7 +32,7 @@ Maven:
 <dependency>
   <groupId>tk.roccodev.hiveapi</groupId> 
   <artifactId>HiveAPIKt</artifactId> 
-  <version>1.1</version>
+  <version>1.2</version>
 </dependency>
 ```
 

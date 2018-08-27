@@ -21,7 +21,7 @@ buildscript {
 
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.51"
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.+'
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:0.9.17"
 
 
@@ -33,9 +33,10 @@ repositories {
     jcenter()
 }
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib:1.2.51"
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.51"
-    compile 'com.beust:klaxon:2.1.13'
+    compile('com.beust:klaxon:2.1.13') {
+        exclude group: 'org.jetbrains.kotlin', module: 'kotlin-reflect'
+    }
+
 }
 sourceSets {
     main.java.srcDirs += 'src/main/kotlin'
@@ -46,10 +47,13 @@ dokka {
     outputDirectory = "$buildDir/javadoc"
 }
 
-jar{
+task shadedJar(type: Jar){
+    classifier = 'shaded'
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
 
 }
+
 
 afterEvaluate {
     task sourceJar(type: Jar, dependsOn: classes) {
@@ -69,7 +73,7 @@ task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
     outputFormat = 'javadoc'
     outputDirectory = "$buildDir/javadoc/HiveAPIKt"
 }
-tasks.build.dependsOn(['sourceJar', 'emptyJar'])
+tasks.build.dependsOn(['jar', 'shadedJar', 'sourceJar', 'emptyJar'])
 
 publishing {
     publications {
@@ -85,6 +89,10 @@ publishing {
 
             artifact emptyJar {
                 classifier 'javadoc'
+            }
+
+            artifact shadedJar {
+                classifier 'shaded'
             }
 
             withPom(pom)

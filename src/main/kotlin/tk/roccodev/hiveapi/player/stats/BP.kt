@@ -1,4 +1,5 @@
 package tk.roccodev.hiveapi.player.stats
+import tk.roccodev.hiveapi.http.DownloadObj
 import tk.roccodev.hiveapi.player.PVPStats
 
 /**
@@ -45,6 +46,7 @@ class BP(player: String) : PVPStats("BP", player) {
 
     override val recentGames: Array<String>
         get() = arrayOf()
+
 
 
     private fun subStringAccordingly(input: String?) : String? {

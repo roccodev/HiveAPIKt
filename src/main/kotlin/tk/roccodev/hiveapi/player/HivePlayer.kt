@@ -5,6 +5,7 @@ import com.beust.klaxon.JsonObject
 import tk.roccodev.hiveapi.game.Achievement
 import tk.roccodev.hiveapi.http.DownloadObj
 import tk.roccodev.hiveapi.player.status.OnlineStatus
+import tk.roccodev.hiveapi.player.status.RawOnlineStatus
 import tk.roccodev.hiveapi.rank.HiveRank
 
 
@@ -16,11 +17,12 @@ import tk.roccodev.hiveapi.rank.HiveRank
  */
 class HivePlayer(val usernameOrUUID: String) {
 
-    internal var jsonObj : JsonObject
+    internal var jsonObj : JsonObject = DownloadObj.hivePlayer(usernameOrUUID)!!
 
-    init {
-        jsonObj = DownloadObj.hivePlayer(usernameOrUUID)!!
-    }
+    val rawStatus: RawOnlineStatus
+            get() {
+               return getRawStatus(usernameOrUUID)
+            }
 
     val username
             get() = jsonObj.string("username")
@@ -48,27 +50,26 @@ class HivePlayer(val usernameOrUUID: String) {
 
     val rank : HiveRank
             get() {
-                var rankObj = jsonObj.obj("modernRank")!!
+                val rankObj = jsonObj.obj("modernRank")!!
                 return HiveRank(rankObj.int("index")!!, rankObj.string("enum")!!, rankObj.string("human")!!)
             }
 
     val status : OnlineStatus
             get(){
-                var statusObj = jsonObj.obj("status")!!
+                val statusObj = jsonObj.obj("status")!!
                 return OnlineStatus(statusObj.string("description")!!, statusObj.string("game")!!)
             }
 
     val achievements : List<Achievement>
             get(){
-                var achObj = jsonObj.obj("achievements")!!
-                var list = mutableListOf<Achievement>()
+                val achObj = jsonObj.obj("achievements")!!
+                val list = mutableListOf<Achievement>()
                 achObj.map.forEach { s, any -> run {
                     if(any is JsonObject){
-                        var json = any as JsonObject
-                        var ach = Achievement(json.int("progress")!!, json.int("unlockedAt")!!)
-                        if(json.size > 2){
+                        val ach = Achievement(any.int("progress")!!, any.int("unlockedAt")!!)
+                        if(any.size > 2){
                             ach.extra = mutableMapOf()
-                            ach.extra!!.putAll(json.map.filterNot { entry -> entry.key == "unlockedAt" || entry.key == "progress" })
+                            ach.extra!!.putAll(any.map.filterNot { entry -> entry.key == "unlockedAt" || entry.key == "progress" })
                         }
                         ach.name = s
                         list.add(ach)
@@ -78,18 +79,25 @@ class HivePlayer(val usernameOrUUID: String) {
                 return list
             }
 
+
+    val currentBPServer: String?
+        get() {
+           return getBPServer(username!!)
+        }
+
     val unlockedAchievements : List<Achievement>
                     get() = achievements.filter { achievement -> achievement.unlockedAt != -1 }
 
 
     val trophies : List<Trophy>
                     get(){
-                        var tObj : JsonArray<JsonObject> = jsonObj.array("trophies")!!
-                        var list = mutableListOf<Trophy>()
+                        val tObj : JsonArray<JsonObject> = jsonObj.array("trophies")!!
+                        val list = mutableListOf<Trophy>()
 
                         tObj.forEach { j -> list.add(Trophy(j.string("game")!!, j.string("achievement")!!)) }
                         return list
                     }
+
 
 
 }
