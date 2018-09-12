@@ -4,7 +4,6 @@ import com.beust.klaxon.JsonObject
 import tk.roccodev.hiveapi.game.Achievement
 import tk.roccodev.hiveapi.game.Game
 import tk.roccodev.hiveapi.http.DownloadObj
-import java.util.stream.Collectors
 
 /**
  *
@@ -18,7 +17,9 @@ import java.util.stream.Collectors
  */
 open class GameStats(private val shortCode: String, val player: String) {
 
-    protected var jsonObj: JsonObject = DownloadObj.pStatsObj(player, shortCode)!!
+    protected open val jsonObj: JsonObject by lazy {
+        DownloadObj.pStatsObj(player, shortCode)!!
+    }
 
     /**
      * Creates an instance of the Game object corresponding to the current gamemode.

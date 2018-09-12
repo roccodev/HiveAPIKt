@@ -17,7 +17,10 @@ import tk.roccodev.hiveapi.rank.HiveRank
  */
 class HivePlayer(val usernameOrUUID: String) {
 
-    internal var jsonObj : JsonObject = DownloadObj.hivePlayer(usernameOrUUID)!!
+    private val jsonObj: JsonObject by lazy {
+        DownloadObj.hivePlayer(usernameOrUUID)!!
+    }
+
 
     val rawStatus: RawOnlineStatus
             get() {
