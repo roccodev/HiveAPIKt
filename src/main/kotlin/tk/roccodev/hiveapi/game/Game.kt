@@ -17,13 +17,10 @@ import tk.roccodev.hiveapi.server.AchievementInfo
  */
 class Game(val shortCode: String){
 
-    var jsonObj: JsonObject
-        private set
-
-
-    init {
-        jsonObj = DownloadObj.gameData(shortCode)
+    val jsonObj: JsonObject by lazy {
+        DownloadObj.gameData(shortCode)
     }
+
 
     /**
      * The unique players of the gamemode.

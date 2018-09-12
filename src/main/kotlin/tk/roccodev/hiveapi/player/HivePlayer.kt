@@ -42,6 +42,12 @@ class HivePlayer(val usernameOrUUID: String) {
     val crates
             get() = jsonObj.int("crates")
 
+    val rawOnlineStatus
+            get() = getRawStatus(usernameOrUUID)
+
+    val currentBlockPartyServer
+            get() = getBPServer(username!!)
+
     val firstLogin
             get() = jsonObj.int("firstLogin")
 

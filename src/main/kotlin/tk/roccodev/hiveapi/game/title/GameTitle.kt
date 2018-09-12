@@ -1,4 +1,4 @@
-package tk.roccodev.hiveapi.game
+package tk.roccodev.hiveapi.game.title
 
 /**
  * Represents a title object.
@@ -9,5 +9,5 @@ package tk.roccodev.hiveapi.game
  * @param plainName the human-friendly name, with color codes stripped away.
  *
  */
-class GameTitle(val enum: String?, val requiredPoints: Int?, val humanName: String?, val plainName: String?)
+open class GameTitle(open val enum: String?, open val requiredPoints: Int?, open val humanName: String?, open val plainName: String?)
 
